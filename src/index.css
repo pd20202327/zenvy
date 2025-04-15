@@ -1,0 +1,152 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode colors - Soft, calming palette */
+    --background: 200 30% 98%;  /* #F5F9FC - Soft blue-white */
+    --foreground: 215 25% 27%;  /* #36465D - Deep navy */
+
+    --card: 200 25% 96%;        /* #EEF5F9 - Pale blue-gray */
+    --card-foreground: 215 25% 27%;
+
+    --popover: 200 30% 98%;
+    --popover-foreground: 215 25% 27%;
+
+    --primary: 176 56% 55%;     /* #5CCCC3 - Teal */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 250 95% 76%;   /* #A2A1FF - Soft lavender */
+    --secondary-foreground: 215 25% 27%;
+
+    --muted: 200 25% 94%;       /* #E9F2F7 - Very pale blue */
+    --muted-foreground: 215 15% 46%; /* #677284 - Muted navy */
+
+    --accent: 42 100% 75%;     /* #FFD866 - Soft gold */
+    --accent-foreground: 215 25% 27%;
+
+    --destructive: 0 56% 62%;   /* #E66F6F - Soft coral */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 25% 88%;      /* #D9E5EE - Pale blue-gray border */
+    --input: 200 25% 88%;
+    --ring: 176 56% 55%;        /* #5CCCC3 - Teal */
+
+    --radius: 1rem;
+
+    --sidebar-background: 200 30% 98%;
+    --sidebar-foreground: 215 25% 27%;
+    --sidebar-primary: 176 56% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 200 25% 94%;
+    --sidebar-accent-foreground: 215 25% 27%;
+    --sidebar-border: 200 25% 88%;
+    --sidebar-ring: 176 56% 55%;
+  }
+
+  .dark {
+    /* Dark mode colors - Deep, soothing palette */
+    --background: 220 35% 13%;  /* #1B2432 - Deep navy blue */
+    --foreground: 210 20% 92%;  /* #E7EBEF - Off-white */
+
+    --card: 215 35% 18%;        /* #263142 - Dark navy blue */
+    --card-foreground: 210 20% 92%;
+
+    --popover: 215 35% 18%;
+    --popover-foreground: 210 20% 92%;
+
+    --primary: 177 58% 45%;     /* #29A59C - Deep teal */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 254 65% 69%;   /* #A6A0F7 - Muted purple */
+    --secondary-foreground: 215 35% 13%;
+
+    --muted: 215 30% 22%;
+    --muted-foreground: 210 15% 70%; /* #ADB6C2 - Soft gray */
+
+    --accent: 35 85% 65%;      /* #EFB74D - Warm amber */
+    --accent-foreground: 215 35% 13%;
+
+    --destructive: 0 54% 52%;
+    --destructive-foreground: 210 20% 92%;
+
+    --border: 215 25% 27%;     /* #36465D - Deep navy */
+    --input: 215 25% 27%;
+    --ring: 177 58% 45%;
+
+    --sidebar-background: 215 35% 18%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 177 58% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 30% 22%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 215 25% 27%;
+    --sidebar-ring: 177 58% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    line-height: 1.8;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    letter-spacing: 0.01em;
+  }
+  
+  h1, .h1 {
+    @apply text-[2.25rem] md:text-[2.75rem] lg:text-[3rem] font-bold font-serif;
+  }
+  
+  h2, .h2 {
+    @apply text-[1.75rem] md:text-[2rem] font-semibold;
+  }
+  
+  h3, .h3 {
+    @apply text-[1.25rem] md:text-[1.5rem] font-semibold;
+  }
+  
+  p {
+    @apply max-w-[700px];
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .resource-card {
+    @apply bg-card text-card-foreground rounded-xl shadow-soft p-6 card-hover;
+  }
+  
+  .assessment-card {
+    @apply bg-card text-card-foreground rounded-xl shadow-soft p-6 card-hover border border-border;
+  }
+
+  .tool-card {
+    @apply bg-primary/10 dark:bg-primary/10 rounded-xl shadow-soft p-6 card-hover border border-primary/20 dark:border-primary/20;
+  }
+  
+  .quote-card {
+    @apply bg-gradient-to-br from-primary/15 to-accent/15 dark:from-primary/15 dark:to-secondary/15 rounded-xl p-6 shadow-soft;
+  }
+  
+  .breathe-circle {
+    @apply rounded-full bg-primary/40 dark:bg-primary/30 animate-breathe;
+  }
+  
+  .crisis-button {
+    @apply fixed bottom-5 right-5 bg-destructive text-white px-4 py-2 rounded-full shadow-lg font-sans font-medium z-50 hover:bg-destructive/90 transition-colors;
+  }
+}

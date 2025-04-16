@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { FileDown } from 'lucide-react';
+import { FileDown, RefreshCw } from 'lucide-react';
 import { AssessmentResult, AssessmentSectionKey } from '@/types/assessment';
 
 interface ResultsOverviewProps {
@@ -51,8 +51,9 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
         </div>
       </CardContent>
       <CardFooter className="flex flex-col gap-3 sm:flex-row sm:justify-between">
-        <Button variant="outline" onClick={resetAssessment} className="w-full sm:w-auto">
-          Retake Assessment
+        <Button variant="outline" onClick={resetAssessment} className="w-full sm:w-auto flex items-center gap-2">
+          <RefreshCw className="h-4 w-4" />
+          <span>Retake Assessment</span>
         </Button>
         <Button onClick={downloadResults} className="w-full sm:w-auto">
           <FileDown className="mr-2 h-4 w-4" /> Download Results

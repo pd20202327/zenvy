@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ToolCard from './ToolCard';
-import { PenSquare, Wind, Heart, CheckSquare } from 'lucide-react';
+import { PenSquare, Wind, Heart, CheckSquare, MessageCircle } from 'lucide-react';
 
 const AvailableTools: React.FC = () => {
   const tools = [
@@ -17,6 +17,19 @@ const AvailableTools: React.FC = () => {
       ],
       linkText: "Open Journal",
       linkPath: "/tools/journal"
+    },
+    {
+      title: "AI Therapy Chat",
+      description: "Supportive AI companion for emotional well-being conversations",
+      icon: MessageCircle,
+      features: [
+        "Empathetic AI responses",
+        "Personalized conversation styles",
+        "Private and secure chat",
+        "24/7 emotional support"
+      ],
+      linkText: "Start Chatting",
+      linkPath: "/tools/chatbot"
     },
     {
       title: "Breathing Exercises",

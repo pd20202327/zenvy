@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Moon, Sun, Phone } from 'lucide-react';
+import { Menu, Moon, Sun, Phone, MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -52,6 +53,10 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, isDarkMode }) => {
             <Link to="/" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary/10">Home</Link>
             <Link to="/assessment" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary/10">Assessment</Link>
             <Link to="/tools" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary/10">Wellness Tools</Link>
+            <Link to="/tools/chatbot" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary/10 flex items-center">
+              <MessageSquare size={16} className="mr-1" />
+              <span>AI Chat</span>
+            </Link>
             <Button 
               variant="outline"
               size="icon" 
@@ -96,6 +101,10 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, isDarkMode }) => {
             <Link to="/" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10">Home</Link>
             <Link to="/assessment" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10">Assessment</Link>
             <Link to="/tools" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10">Wellness Tools</Link>
+            <Link to="/tools/chatbot" className="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10">
+              <MessageSquare size={16} className="mr-2" />
+              <span>AI Therapy Chat</span>
+            </Link>
             <Button 
               onClick={showCrisisSupport}
               variant="destructive"
@@ -107,12 +116,22 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, isDarkMode }) => {
         </div>
       )}
 
-      <Button 
-        onClick={showCrisisSupport}
-        className="crisis-button md:hidden"
-      >
-        Crisis Support
-      </Button>
+      <div className="fixed bottom-4 right-4 z-50 md:hidden">
+        <Button 
+          onClick={showCrisisSupport}
+          className="crisis-button"
+        >
+          Crisis Support
+        </Button>
+        <Button
+          variant="secondary"
+          size="icon"
+          className="bg-primary/90 text-primary-foreground hover:bg-primary/80 ml-2"
+          onClick={() => window.location.href = '/tools/chatbot'}
+        >
+          <MessageSquare size={20} />
+        </Button>
+      </div>
     </nav>
   );
 };

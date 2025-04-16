@@ -1,59 +1,59 @@
 
-import React, { useEffect, useRef } from 'react';
-import { BreathPhase } from './types';
-import { useTheme } from '@/contexts/ThemeContext';
+import React from 'react';
 
 interface BreathingCircleProps {
-  breathPhase: BreathPhase;
+  breathPhase: 'inhale' | 'hold' | 'exhale' | 'pause';
   countdown: number;
   isBreathing: boolean;
 }
 
-const BreathingCircle: React.FC<BreathingCircleProps> = ({
-  breathPhase,
-  countdown,
-  isBreathing
+const BreathingCircle: React.FC<BreathingCircleProps> = ({ 
+  breathPhase, 
+  countdown, 
+  isBreathing 
 }) => {
-  const circleRef = useRef<HTMLDivElement>(null);
-  const { isDarkMode } = useTheme();
-
-  useEffect(() => {
-    if (!circleRef.current) return;
-    
-    circleRef.current.classList.remove('scale-100', 'scale-125', 'opacity-50', 'opacity-80', 'opacity-100');
+  const getAnimationClass = () => {
+    if (!isBreathing) return '';
     
     switch (breathPhase) {
-      case BreathPhase.INHALE:
-        circleRef.current.classList.add('scale-125', 'opacity-100');
-        break;
-      case BreathPhase.HOLD1:
-        circleRef.current.classList.add('scale-125', 'opacity-80');
-        break;
-      case BreathPhase.EXHALE:
-        circleRef.current.classList.add('scale-100', 'opacity-50');
-        break;
-      case BreathPhase.HOLD2:
-        circleRef.current.classList.add('scale-100', 'opacity-80');
-        break;
+      case 'inhale':
+        return 'animate-[breathe-in_4s_ease-in-out_forwards]';
+      case 'hold':
+        return '';
+      case 'exhale':
+        return 'animate-[breathe-out_7s_ease-in-out_forwards]';
+      case 'pause':
+        return '';
+      default:
+        return '';
     }
-  }, [breathPhase]);
+  };
 
-  const getCircleColor = () => {
-    if (isDarkMode) {
-      return breathPhase === BreathPhase.INHALE ? 'bg-primary/30' : 'bg-primary/20';
-    }
-    return breathPhase === BreathPhase.INHALE ? 'bg-primary/30' : 'bg-primary/15';
+  const baseSize = 200;
+  const phaseSize = {
+    inhale: isBreathing ? baseSize * 1.5 : baseSize,
+    hold: baseSize * 1.5,
+    exhale: isBreathing ? baseSize : baseSize * 1.5,
+    pause: baseSize
   };
 
   return (
-    <div className="relative flex justify-center items-center mb-8">
+    <div className="flex flex-col items-center justify-center my-8">
       <div 
-        ref={circleRef}
-        className={`w-56 h-56 rounded-full transition-all duration-[1.5s] ease-in-out scale-100 opacity-50 ${getCircleColor()}`}
-      />
-      {isBreathing && (
-        <div className="absolute text-4xl font-bold">{countdown}</div>
-      )}
+        className={`breathe-circle flex items-center justify-center ${getAnimationClass()}`}
+        style={{ 
+          width: `${phaseSize[breathPhase]}px`, 
+          height: `${phaseSize[breathPhase]}px`,
+          transition: 'width 3s, height 3s'
+        }}
+      >
+        <div className="text-center">
+          <div className="text-3xl font-medium text-primary-foreground">{countdown}</div>
+          <div className="text-xl text-primary-foreground/80 capitalize">
+            {breathPhase}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

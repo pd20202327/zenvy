@@ -143,10 +143,45 @@
   }
   
   .breathe-circle {
-    @apply rounded-full bg-primary/40 dark:bg-primary/30 animate-breathe;
+    @apply rounded-full bg-primary/40 dark:bg-primary/30 shadow-lg;
   }
   
   .crisis-button {
     @apply fixed bottom-5 right-5 bg-destructive text-white px-4 py-2 rounded-full shadow-lg font-sans font-medium z-50 hover:bg-destructive/90 transition-colors;
+  }
+}
+
+@keyframes breathe-in {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes breathe-out {
+  from {
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(92, 204, 195, 0.5);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(92, 204, 195, 0.8);
+  }
+}
+
+@layer utilities {
+  .animate-breathe {
+    animation: pulse-glow 3s infinite ease-in-out;
   }
 }

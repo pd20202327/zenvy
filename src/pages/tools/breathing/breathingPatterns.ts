@@ -3,48 +3,39 @@ import { BreathingPattern } from './types';
 
 export const breathingPatterns: BreathingPattern[] = [
   {
-    id: '4-7-8',
-    name: '4-7-8 Breathing',
-    inhale: 4,
-    hold1: 7,
-    exhale: 8,
-    hold2: 0,
-    description: 'A relaxing breath pattern that helps reduce anxiety and aid sleep.',
-    benefits: [
-      'Reduces anxiety and stress',
-      'Helps with falling asleep',
-      'Manages cravings',
-      'Helps control emotional responses'
-    ]
-  },
-  {
     id: 'box',
     name: 'Box Breathing',
-    inhale: 4,
-    hold1: 4,
-    exhale: 4,
-    hold2: 4,
-    description: 'Equal parts breath and hold, creating a "box" pattern that promotes focus and calm.',
-    benefits: [
-      'Heightens performance and concentration',
-      'Manages stress',
-      'Improves emotional regulation',
-      'Used by Navy SEALs for calm under pressure'
-    ]
+    description: 'Inhale, hold, exhale, and pause for equal counts (4-4-4-4)',
+    inhaleTime: 4,
+    holdTime: 4,
+    exhaleTime: 4,
+    pauseTime: 4
+  },
+  {
+    id: '478',
+    name: '4-7-8 Breathing',
+    description: 'Inhale for 4, hold for 7, exhale for 8 (calming)',
+    inhaleTime: 4,
+    holdTime: 7,
+    exhaleTime: 8,
+    pauseTime: 0
   },
   {
     id: 'deep',
-    name: 'Deep Breathing',
-    inhale: 5,
-    hold1: 2,
-    exhale: 6,
-    hold2: 0,
-    description: 'Simple deep breathing with long exhales to activate the parasympathetic nervous system.',
-    benefits: [
-      'Activates relaxation response',
-      'Lowers heart rate and blood pressure',
-      'Improves oxygen exchange',
-      'Accessible anytime, anywhere'
-    ]
+    name: 'Deep Diaphragmatic',
+    description: 'Slow deep inhales and long exhales (5-2-7-0)',
+    inhaleTime: 5,
+    holdTime: 2,
+    exhaleTime: 7,
+    pauseTime: 0
+  },
+  {
+    id: 'relaxing',
+    name: 'Relaxing Breath',
+    description: 'Gentle inhale, brief hold, long exhale (4-2-6-1)',
+    inhaleTime: 4,
+    holdTime: 2,
+    exhaleTime: 6,
+    pauseTime: 1
   }
 ];

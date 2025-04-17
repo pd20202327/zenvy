@@ -76,7 +76,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   };
 
   return (
-    <div className="relative mt-4">
+    <div className="relative mt-2 sm:mt-3">
       <div className="flex items-end gap-2">
         <div className="relative flex-grow">
           <Textarea
@@ -85,7 +85,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder={editMode ? "Edit your message..." : "Type your message..."}
-            className={`min-h-[60px] pr-10 resize-none ${editMode ? 'bg-background/95 border-amber-300' : ''}`}
+            className={`min-h-[50px] sm:min-h-[55px] text-sm pr-8 resize-none ${editMode ? 'bg-background/95 border-amber-300' : ''}`}
             disabled={isLoading}
           />
           {!editMode && (
@@ -95,18 +95,18 @@ const ChatInput: React.FC<ChatInputProps> = ({
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-6 w-6 hover:bg-muted"
+                    className="h-5 w-5 hover:bg-muted"
                   >
-                    <Lightbulb className="h-4 w-4 text-muted-foreground" />
+                    <Lightbulb className="h-3 w-3 text-muted-foreground" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent align="end" className="w-64 p-2">
+                <PopoverContent align="end" className="w-60 p-1 sm:p-2">
                   <div className="space-y-1">
                     {conversationStarters.map((starter, index) => (
                       <Button
                         key={index}
                         variant="ghost"
-                        className="w-full justify-start text-sm h-auto py-2 px-3"
+                        className="w-full justify-start text-xs sm:text-sm h-auto py-1 px-2"
                         onClick={() => handleConversationStarter(starter)}
                       >
                         {starter}
@@ -120,18 +120,20 @@ const ChatInput: React.FC<ChatInputProps> = ({
         </div>
         
         {editMode ? (
-          <div className="flex gap-2">
+          <div className="flex gap-1">
             <Button 
               variant="outline" 
               onClick={onCancelEdit}
-              className="rounded-full"
+              className="rounded-full text-xs h-8 px-3"
+              size="sm"
             >
               Cancel
             </Button>
             <Button 
               onClick={handleSend}
               disabled={isLoading || !message.trim()} 
-              className="rounded-full"
+              className="rounded-full text-xs h-8 px-3"
+              size="sm"
             >
               Save
             </Button>
@@ -141,15 +143,15 @@ const ChatInput: React.FC<ChatInputProps> = ({
             onClick={handleSend}
             size="icon"
             disabled={isLoading || !message.trim()} 
-            className="flex-shrink-0"
+            className="flex-shrink-0 h-8 w-8"
           >
-            <SendHorizonal size={18} />
+            <SendHorizonal size={16} />
           </Button>
         )}
       </div>
       
       {!editMode && (
-        <p className="text-xs text-muted-foreground mt-2 text-center">
+        <p className="text-xs text-muted-foreground mt-1 text-center">
           Press Enter to send, Shift+Enter for new line
         </p>
       )}

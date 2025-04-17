@@ -39,24 +39,24 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
   };
   
   return (
-    <div className="border-b border-border py-3 px-4 flex items-center justify-between gap-4">
+    <div className="border-b border-border py-2 px-3 sm:py-3 sm:px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
       <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon" onClick={handleBackClick} className="md:hidden">
-          <ArrowLeft size={20} />
+        <Button variant="ghost" size="icon" onClick={handleBackClick} className="h-8 w-8">
+          <ArrowLeft size={18} />
         </Button>
         
         <div className="flex items-center">
-          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-2">
-            <Bot size={18} className="text-primary" />
+          <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center mr-2">
+            <Bot size={16} className="text-primary" />
           </div>
           <div>
-            <h2 className="text-lg font-medium">Zen Companion</h2>
+            <h2 className="text-base font-medium">Zen Companion</h2>
             <p className="text-xs text-muted-foreground">AI-powered supportive chat</p>
           </div>
         </div>
       </div>
       
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between sm:justify-end gap-2 mt-1 sm:mt-0">
         <TherapyStyleSelector 
           currentStyle={therapyStyle}
           onChange={onTherapyStyleChange}
@@ -64,8 +64,8 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
         
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant="ghost" size="icon" title="Clear conversation">
-              <Trash2 size={18} className="text-muted-foreground" />
+            <Button variant="ghost" size="icon" title="Clear conversation" className="h-8 w-8">
+              <Trash2 size={16} className="text-muted-foreground" />
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>

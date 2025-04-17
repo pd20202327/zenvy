@@ -90,7 +90,7 @@ const Chatbot: React.FC = () => {
   };
 
   return (
-    <div className="container max-w-4xl mx-auto px-4 py-8">
+    <div className="container max-w-4xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
       <Card className="overflow-hidden border shadow-md">
         <ChatHeader 
           therapyStyle={therapyStyle}
@@ -99,7 +99,7 @@ const Chatbot: React.FC = () => {
         />
         
         <CardContent className="p-0">
-          <div className="h-[60vh] overflow-y-auto p-4">
+          <div className="h-[70vh] overflow-y-auto p-3 sm:p-4">
             {messages.length > 0 ? (
               <div className="space-y-2">
                 {messages.map((message) => (
@@ -115,26 +115,26 @@ const Chatbot: React.FC = () => {
                   )
                 ))}
                 {isLoading && (
-                  <div className="flex justify-center py-4">
-                    <Loader2 className="h-6 w-6 animate-spin text-primary" />
+                  <div className="flex justify-center py-3">
+                    <Loader2 className="h-5 w-5 animate-spin text-primary" />
                   </div>
                 )}
                 <div ref={messagesEndRef} />
               </div>
             ) : (
               <div className="flex h-full flex-col items-center justify-center text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-                  <span className="text-2xl text-primary">Z</span>
+                <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center mb-3">
+                  <span className="text-xl text-primary">Z</span>
                 </div>
-                <h3 className="text-lg font-medium">Welcome to Zen Companion</h3>
-                <p className="text-muted-foreground max-w-xs mt-2">
+                <h3 className="text-base font-medium">Welcome to Zen Companion</h3>
+                <p className="text-sm text-muted-foreground max-w-xs mt-2">
                   Your AI companion for emotional support. Share what's on your mind, and I'm here to listen.
                 </p>
               </div>
             )}
           </div>
           
-          <div className="border-t p-4">
+          <div className="border-t p-3 sm:p-4">
             <ChatInput 
               onSend={handleSendMessage} 
               isLoading={isLoading}

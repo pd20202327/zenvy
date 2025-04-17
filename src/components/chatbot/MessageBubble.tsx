@@ -39,20 +39,20 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser, timestam
   return (
     <div
       className={cn(
-        "flex items-start gap-2 mb-4 group",
+        "flex items-start gap-2 mb-3 group",
         isUser ? "justify-end" : "justify-start"
       )}
     >
       {!isUser && (
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-          <Bot size={18} className="text-primary" />
+        <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary/20 flex items-center justify-center">
+          <Bot size={14} className="text-primary" />
         </div>
       )}
       
-      <div className="max-w-[75%] flex flex-col relative">
+      <div className="max-w-[80%] flex flex-col relative">
         <div
           className={cn(
-            "rounded-2xl px-4 py-3 relative",
+            "rounded-2xl px-3 py-2 relative text-sm",
             isUser 
               ? "bg-primary text-primary-foreground rounded-tr-none" 
               : "bg-muted rounded-tl-none"
@@ -61,8 +61,8 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser, timestam
           <p className="whitespace-pre-line">{content}</p>
         </div>
         
-        <div className="flex justify-between items-center mt-1">
-          <span className="text-xs text-muted-foreground">
+        <div className="flex justify-between items-center mt-0.5">
+          <span className="text-[10px] sm:text-xs text-muted-foreground">
             {formatTime(timestamp)}
           </span>
           
@@ -71,18 +71,18 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser, timestam
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity"
                 onClick={handleEdit}
               >
-                <Pencil size={12} />
+                <Pencil size={10} />
               </Button>
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity"
                 onClick={handleCopy}
               >
-                <Copy size={12} />
+                <Copy size={10} />
               </Button>
             </div>
           )}
@@ -90,8 +90,8 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser, timestam
       </div>
       
       {isUser && (
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/80 flex items-center justify-center">
-          <User size={16} className="text-primary-foreground" />
+        <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary/80 flex items-center justify-center">
+          <User size={14} className="text-primary-foreground" />
         </div>
       )}
     </div>

@@ -45,26 +45,26 @@ const TherapyStyleSelector: React.FC<TherapyStyleSelectorProps> = ({ currentStyl
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="flex items-center gap-1">
-          <Heart size={14} className="text-primary mr-1" />
+        <Button variant="outline" size="sm" className="flex h-8 text-xs items-center gap-1 px-2">
+          <Heart size={12} className="text-primary mr-1" />
           <span>Style: {currentStyleLabel}</span>
-          <ChevronDown size={14} />
+          <ChevronDown size={12} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
+      <DropdownMenuContent align="end" className="w-52 sm:w-56 p-1">
         {styles.map((style) => (
           <DropdownMenuItem
             key={style.value}
             onClick={() => onChange(style.value)}
-            className="flex flex-col items-start py-2 cursor-pointer"
+            className="flex flex-col items-start py-1 cursor-pointer"
           >
             <div className="flex w-full items-center justify-between">
-              <span className="font-medium">{style.label}</span>
+              <span className="font-medium text-xs sm:text-sm">{style.label}</span>
               {currentStyle === style.value && (
-                <CheckIcon size={16} className="text-primary" />
+                <CheckIcon size={14} className="text-primary" />
               )}
             </div>
-            <span className="text-xs text-muted-foreground mt-1">{style.description}</span>
+            <span className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">{style.description}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

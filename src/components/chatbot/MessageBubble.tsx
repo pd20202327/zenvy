@@ -52,17 +52,17 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ content, isUser, timestam
       <div className="max-w-[80%] flex flex-col relative">
         <div
           className={cn(
-            "rounded-2xl px-3 py-2 relative text-sm",
+            "rounded-2xl px-3 py-2 relative text-xs sm:text-sm",
             isUser 
               ? "bg-primary text-primary-foreground rounded-tr-none" 
               : "bg-muted rounded-tl-none"
           )}
         >
-          <p className="whitespace-pre-line">{content}</p>
+          <p className="whitespace-pre-line leading-relaxed">{content}</p>
         </div>
         
         <div className="flex justify-between items-center mt-0.5">
-          <span className="text-[10px] sm:text-xs text-muted-foreground">
+          <span className="text-[10px] text-muted-foreground">
             {formatTime(timestamp)}
           </span>
           

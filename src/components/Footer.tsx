@@ -20,6 +20,11 @@ const Footer: React.FC = () => {
               <h4 className="text-sm font-semibold tracking-wider uppercase mb-3">Resources</h4>
               <ul className="space-y-2">
                 <li>
+                  <Link to="/about" className="text-sm hover:text-primary transition-colors">
+                    About Us
+                  </Link>
+                </li>
+                <li>
                   <Link to="/assessment" className="text-sm hover:text-primary transition-colors">
                     Take Assessment
                   </Link>

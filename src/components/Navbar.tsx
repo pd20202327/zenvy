@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Moon, Sun, Phone, MessageSquare } from 'lucide-react';
+import { Menu, Moon, Sun, Phone, MessageSquare, Info } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -51,6 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, isDarkMode }) => {
           
           <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
             <Link to="/" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary/10">Home</Link>
+            <Link to="/about" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary/10">About</Link>
             <Link to="/assessment" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary/10">Assessment</Link>
             <Link to="/tools" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary/10">Wellness Tools</Link>
             <Link to="/tools/chatbot" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-primary/10 flex items-center">
@@ -99,6 +100,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, isDarkMode }) => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 bg-card border-t border-border">
             <Link to="/" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10">Home</Link>
+            <Link to="/about" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10">About</Link>
             <Link to="/assessment" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10">Assessment</Link>
             <Link to="/tools" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10">Wellness Tools</Link>
             <Link to="/tools/chatbot" className="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10">

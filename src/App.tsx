@@ -19,8 +19,10 @@ import Breathing from "@/pages/tools/Breathing";
 import SelfLove from "@/pages/tools/SelfLove";
 import Habits from "@/pages/tools/Habits";
 import Chatbot from "@/pages/tools/Chatbot";
+import About from "@/pages/About";
 import NotFound from "@/pages/NotFound";
 import { useTheme } from "@/contexts/ThemeContext";
+import Feedback from "@/components/feedback/Feedback";
 
 const queryClient = new QueryClient();
 
@@ -75,9 +77,11 @@ const AppContent = () => {
           <Route path="/tools/self-love" element={<SelfLove />} />
           <Route path="/tools/habits" element={<Habits />} />
           <Route path="/tools/chatbot" element={<Chatbot />} />
+          <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <Feedback />
       <Footer />
     </div>
   );

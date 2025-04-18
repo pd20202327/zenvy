@@ -1,5 +1,4 @@
-
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useChatbot } from '@/contexts/ChatbotContext';
 import ChatHeader from '@/components/chatbot/ChatHeader';
 import ChatInput from '@/components/chatbot/ChatInput';
@@ -24,15 +23,6 @@ const Chatbot: React.FC = () => {
   const [editingMessage, setEditingMessage] = useState<string | null>(null);
   const [editContent, setEditContent] = useState<string>('');
   const { toast } = useToast();
-  
-  // Scroll to bottom of chat when messages change
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-  
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const handleSendMessage = (message: string) => {
     if (editingMessage) {
@@ -68,19 +58,12 @@ const Chatbot: React.FC = () => {
   
   const handleEditComplete = (id: string, newContent: string) => {
     if (newContent.trim()) {
-      // First find the user message and its corresponding assistant response
       const messageIndex = messages.findIndex(msg => msg.id === id);
       if (messageIndex >= 0 && messageIndex + 1 < messages.length && messages[messageIndex + 1].role === 'assistant') {
-        // Get the assistant message ID that follows this user message
         const assistantMessageId = messages[messageIndex + 1].id;
-        
-        // Update the user message content
         editMessage(id, newContent);
-        
-        // Send the message to get a new response, passing both IDs to replace the assistant message
         sendMessage(newContent, true, assistantMessageId);
       } else {
-        // If no assistant response found or message structure is different, just do the normal edit
         editMessage(id, newContent);
         sendMessage(newContent, true);
       }
@@ -99,7 +82,9 @@ const Chatbot: React.FC = () => {
         />
         
         <CardContent className="p-0">
-          <div className="h-[70vh] overflow-y-auto p-3 sm:p-4">
+          <div 
+            className="h-[70vh] overflow-y-auto p-3 sm:p-4"
+          >
             {messages.length > 0 ? (
               <div className="space-y-2">
                 {messages.map((message) => (

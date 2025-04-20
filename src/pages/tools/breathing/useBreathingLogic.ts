@@ -1,6 +1,6 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { BreathingPattern } from './types';
+import { playTimerSound, speakInstruction, playBreathSound } from '@/utils/audioUtils';
 
 export const useBreathingLogic = (pattern: BreathingPattern) => {
   const [isBreathing, setIsBreathing] = useState(false);
@@ -12,7 +12,6 @@ export const useBreathingLogic = (pattern: BreathingPattern) => {
   const timerRef = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
-  // Set up audio 
   useEffect(() => {
     audioRef.current = new Audio('/breath-sound.mp3');
     audioRef.current.volume = 0.3;
@@ -25,15 +24,16 @@ export const useBreathingLogic = (pattern: BreathingPattern) => {
     };
   }, []);
   
-  // Main breathing timer logic
   useEffect(() => {
     if (!isBreathing) return;
     
     timerRef.current = window.setTimeout(() => {
       if (countdown > 1) {
         setCountdown(countdown - 1);
+        if (!isMuted) {
+          playTimerSound();
+        }
       } else {
-        // Move to next phase
         switch (breathPhase) {
           case 'inhale':
             setBreathPhase('hold');
@@ -67,19 +67,26 @@ export const useBreathingLogic = (pattern: BreathingPattern) => {
         clearTimeout(timerRef.current);
       }
     };
-  }, [isBreathing, countdown, breathPhase, pattern]);
+  }, [isBreathing, countdown, breathPhase, pattern, isMuted]);
   
-  // Play sounds based on breath phase
   useEffect(() => {
-    if (!isBreathing || isMuted || !audioRef.current) return;
+    if (!isBreathing || isMuted) return;
     
-    if (breathPhase === 'inhale' && countdown === pattern.inhaleTime) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(error => console.error('Error playing audio:', error));
+    if (countdown === pattern.inhaleTime && breathPhase === 'inhale') {
+      playBreathSound('inhale');
+      speakInstruction('Inhale');
+    } else if (countdown === pattern.holdTime && breathPhase === 'hold') {
+      playTimerSound();
+      speakInstruction('Hold');
+    } else if (countdown === pattern.exhaleTime && breathPhase === 'exhale') {
+      playBreathSound('exhale');
+      speakInstruction('Exhale');
+    } else if (countdown === pattern.pauseTime && breathPhase === 'pause') {
+      playTimerSound();
+      speakInstruction('Pause');
     }
-  }, [breathPhase, countdown, isBreathing, isMuted, pattern.inhaleTime]);
+  }, [breathPhase, countdown, isBreathing, isMuted, pattern]);
   
-  // Start/stop breathing exercise
   const toggleBreathing = () => {
     if (isBreathing) {
       setIsBreathing(false);

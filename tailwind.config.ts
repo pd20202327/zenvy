@@ -1,4 +1,3 @@
-
 import { fontFamily } from "tailwindcss/defaultTheme"
 import type { Config } from "tailwindcss"
 import animatePlugin from "tailwindcss-animate"
@@ -100,12 +99,12 @@ const config = {
           }
         },
         "breathe-in": {
-          from: { transform: "scale(1)" },
-          to: { transform: "scale(1.5)" },
+          from: { opacity: "0.8" },
+          to: { opacity: "1" },
         },
         "breathe-out": {
-          from: { transform: "scale(1.5)" },
-          to: { transform: "scale(1)" },
+          from: { opacity: "1" },
+          to: { opacity: "0.8" },
         },
       },
       animation: {

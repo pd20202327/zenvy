@@ -1,18 +1,22 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Moon, Sun, Phone, MessageSquare, Info } from 'lucide-react';
+import { Menu, Moon, Sun, Phone, MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface NavbarProps {
   toggleDarkMode: () => void;
   isDarkMode: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, isDarkMode }) => {
+const Navbar: React.FC<NavbarProps> = ({ 
+  toggleDarkMode, 
+  isDarkMode 
+}) => {
   const { toast } = useToast();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const isMobile = useIsMobile();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -95,7 +99,6 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, isDarkMode }) => {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 bg-card border-t border-border">
@@ -118,22 +121,16 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, isDarkMode }) => {
         </div>
       )}
 
-      <div className="fixed bottom-4 right-4 z-50 md:hidden">
-        <Button 
-          onClick={showCrisisSupport}
-          className="crisis-button"
-        >
-          Crisis Support
-        </Button>
-        <Button
-          variant="secondary"
-          size="icon"
-          className="bg-primary/90 text-primary-foreground hover:bg-primary/80 ml-2"
-          onClick={() => window.location.href = '/tools/chatbot'}
-        >
-          <MessageSquare size={20} />
-        </Button>
-      </div>
+      {isMobile && window.location.pathname === '/tools/chatbot' && (
+        <div className="fixed bottom-4 left-4 z-50">
+          <Button 
+            onClick={showCrisisSupport}
+            className="crisis-button"
+          >
+            Crisis Support
+          </Button>
+        </div>
+      )}
     </nav>
   );
 };

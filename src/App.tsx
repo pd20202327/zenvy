@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -22,7 +21,6 @@ import Chatbot from "@/pages/tools/Chatbot";
 import About from "@/pages/About";
 import NotFound from "@/pages/NotFound";
 import { useTheme } from "@/contexts/ThemeContext";
-import Feedback from "@/components/feedback/Feedback";
 
 const queryClient = new QueryClient();
 
@@ -81,7 +79,6 @@ const AppContent = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <Feedback />
       <Footer />
     </div>
   );

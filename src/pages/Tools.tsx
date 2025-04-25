@@ -18,7 +18,7 @@ const Tools: React.FC = () => {
       <div className="mt-12 bg-muted/50 rounded-lg p-6 border border-border">
         <h2 className="text-xl font-semibold mb-3">About These Tools</h2>
         <p className="text-muted-foreground mb-4">
-          All tools on Self-Care Compass are designed to support your mental wellness journey, but they are not substitutes for professional care.
+          All tools on Zenvy are designed to support your mental wellness journey, but they are not substitutes for professional care.
         </p>
         <p className="text-muted-foreground">
           These tools store information locally in your browser only - your data stays private and is never transmitted to any server.

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clipboard, Lightbulb, Heart } from 'lucide-react';
@@ -120,10 +121,10 @@ const Home: React.FC = () => {
       {/* About Section */}
       <section className="py-12 px-4 bg-[#9DC5A1]/10 dark:bg-[#D995A7]/10">
         <div className="max-w-4xl mx-auto flex flex-col items-center justify-center text-center">
-          <h2 className="text-[28px] md:text-[32px] font-lora font-semibold mb-6 text-[#333333] dark:text-[#EAEAEA]">About Self-Care Compass</h2>
+          <h2 className="text-[28px] md:text-[32px] font-lora font-semibold mb-6 text-[#333333] dark:text-[#EAEAEA]">About Zenvy</h2>
           <div className="max-w-2xl space-y-4">
             <p className="font-inter text-[16px] leading-[1.7] text-[#4B4B4B] dark:text-[#CFCFCF]">
-              Self-Care Compass is a private, non-AI mental health resource hub designed to help you navigate your emotional wellbeing journey.
+              Zenvy is a private, non-AI mental health resource hub designed to help you navigate your emotional wellbeing journey.
             </p>
             <p className="font-inter text-[16px] leading-[1.7] text-[#4B4B4B] dark:text-[#CFCFCF]">
               All tools and resources are freely available without requiring login or sharing personal data. Your privacy is our priority.

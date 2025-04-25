@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { AssessmentResult, AssessmentSectionKey, Assessment } from '@/types/assessment';
 import { answerOptions } from '@/data/assessmentData';
@@ -102,10 +101,10 @@ export const useAssessmentScoring = ({
     const margin = 20;
     let yPosition = 20;
     
-    // Title
+    // Updated title
     doc.setFontSize(18);
     doc.setFont('helvetica', 'bold');
-    doc.text('Self-Care Compass Assessment Results', pageWidth / 2, yPosition, { align: 'center' });
+    doc.text('Zenvy Assessment Results', pageWidth / 2, yPosition, { align: 'center' });
     yPosition += 10;
     
     // Date
@@ -213,7 +212,7 @@ export const useAssessmentScoring = ({
     );
     
     // Save the PDF
-    doc.save('self-care-compass-results.pdf');
+    doc.save('zenvy-assessment-results.pdf');
   };
 
   return {

@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Moon, Sun, Phone, MessageSquare } from 'lucide-react';
+import { Menu, Moon, Sun, Phone, MessageSquare, Copy } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -22,6 +23,14 @@ const Navbar: React.FC<NavbarProps> = ({
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const copyToClipboard = (number: string) => {
+    navigator.clipboard.writeText(number);
+    toast({
+      description: `Phone number ${number} copied to clipboard`,
+      duration: 2000,
+    });
+  };
+
   const showCrisisSupport = () => {
     toast({
       title: "Tele MANAS Mental Health Support",
@@ -29,13 +38,33 @@ const Navbar: React.FC<NavbarProps> = ({
         <div className="space-y-3 mt-2">
           <p>Tele MANAS is a comprehensive mental health care service</p>
           <p>Dial the Toll-Free numbers below to get in touch with our Counsellor</p>
-          <div className="flex items-center space-x-2 mt-2">
-            <Phone size={18} />
-            <span>14416</span>
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center space-x-2">
+              <Phone size={18} />
+              <span>14416</span>
+            </div>
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="h-8 w-8 hover:bg-muted"
+              onClick={() => copyToClipboard('14416')}
+            >
+              <Copy size={16} />
+            </Button>
           </div>
-          <div className="flex items-center space-x-2">
-            <Phone size={18} />
-            <span>1-800 891 4416</span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Phone size={18} />
+              <span>1-800 891 4416</span>
+            </div>
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="h-8 w-8 hover:bg-muted"
+              onClick={() => copyToClipboard('1-800 891 4416')}
+            >
+              <Copy size={16} />
+            </Button>
           </div>
         </div>
       ),

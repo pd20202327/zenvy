@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { TherapyStyle } from '@/contexts/ChatbotContext';
+import { TherapyStyle } from '@/types/chat';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,

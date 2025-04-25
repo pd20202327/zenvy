@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useChatbot } from '@/contexts/ChatbotContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Info, FileText, ArrowRight, MessageSquare, RefreshCw } from 'lucide-react';
@@ -29,11 +30,15 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
 }) => {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
-
+  const { setAssessmentContext } = useChatbot();
+  
   const navigateToChat = () => {
+    setAssessmentContext({
+      sectionScores: assessmentResult.sectionScores
+    });
     navigate('/tools/chatbot');
   };
-
+  
   const navigateToTools = () => {
     navigate('/tools');
   };

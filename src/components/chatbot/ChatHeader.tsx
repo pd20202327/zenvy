@@ -8,7 +8,7 @@ import {
   Trash2
 } from 'lucide-react';
 import TherapyStyleSelector from './TherapyStyleSelector';
-import { TherapyStyle } from '@/contexts/ChatbotContext';
+import { TherapyStyle } from '@/types/chat';
 import {
   AlertDialog,
   AlertDialogAction,

@@ -1,4 +1,3 @@
-
 export type AssessmentQuestion = {
   id: number;
   text: string;
@@ -7,12 +6,13 @@ export type AssessmentQuestion = {
 
 export type AssessmentSectionKey = 
   | 'mood'
+  | 'thoughts'
   | 'anxiety'
-  | 'selfEsteem'
+  | 'sleep'
+  | 'selfImage'
   | 'relationships'
-  | 'anger'
-  | 'trauma'
-  | 'functioning';
+  | 'harmful'
+  | 'reality';
 
 export interface AssessmentSection {
   key: AssessmentSectionKey;

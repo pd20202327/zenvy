@@ -1,10 +1,11 @@
+
 import React, { useState, useRef } from 'react';
 import { useChatbot } from '@/contexts/ChatbotContext';
 import ChatHeader from '@/components/chatbot/ChatHeader';
 import ChatInput from '@/components/chatbot/ChatInput';
 import MessageBubble from '@/components/chatbot/MessageBubble';
 import { Card, CardContent } from '@/components/ui/card';
-import { TherapyStyle } from '@/contexts/ChatbotContext';
+import { TherapyStyle } from '@/types/chat';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 

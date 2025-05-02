@@ -1,7 +1,7 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useChatbot } from '@/contexts/ChatbotContext';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Info, FileText, ArrowRight, MessageSquare, RefreshCw } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
@@ -10,6 +10,7 @@ import { Assessment, AssessmentResult, AssessmentSectionKey } from '@/types/asse
 import ResultsOverview from './ResultsOverview';
 import SectionResult from './SectionResult';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { cn } from '@/lib/utils';
 
 interface ResultsPageProps {
   assessment: Assessment;
@@ -31,6 +32,7 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const { setAssessmentContext } = useChatbot();
+  const [activeSection, setActiveSection] = React.useState<string>("overview");
   
   const navigateToChat = () => {
     setAssessmentContext({
@@ -48,12 +50,12 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 animate-fade-in">
+    <div className="max-w-7xl mx-auto px-4 py-8 animate-fade-in">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Your Assessment Results</h1>
         <Button onClick={handleRetest} variant="outline" className="flex items-center gap-2">
           <RefreshCw className="h-4 w-4" />
-          <span>Retest</span>
+          <span className="hidden sm:inline">Retest</span>
         </Button>
       </div>
       
@@ -66,38 +68,66 @@ const ResultsPage: React.FC<ResultsPageProps> = ({
         </AlertDescription>
       </Alert>
       
-      <Tabs defaultValue="overview">
-        <TabsList className="mb-4">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          {sectionKeys.map(section => (
-            <TabsTrigger key={section} value={section}>
-              {assessment.sections[section].title.split('&')[0].trim()}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Sidebar with section options */}
+        <div className="md:w-72 flex-shrink-0">
+          <div className="bg-card rounded-lg border p-2 mb-4 md:mb-0 md:sticky md:top-4">
+            <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-1 md:pb-0">
+              <Button 
+                onClick={() => setActiveSection("overview")} 
+                variant={activeSection === "overview" ? "default" : "ghost"}
+                className={cn(
+                  "justify-start text-left py-3 h-auto",
+                  activeSection === "overview" ? "bg-primary" : "",
+                  "text-sm md:text-base font-medium"
+                )}
+              >
+                Overview
+              </Button>
+              {sectionKeys.map(section => (
+                <Button 
+                  key={section} 
+                  onClick={() => setActiveSection(section)}
+                  variant={activeSection === section ? "default" : "ghost"}
+                  className={cn(
+                    "justify-start text-left py-3 h-auto min-h-[48px]",
+                    activeSection === section ? "bg-primary" : "",
+                    "text-xs md:text-sm font-medium break-words"
+                  )}
+                >
+                  {assessment.sections[section].title.split('&')[0].trim()}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
         
-        <TabsContent value="overview" className="space-y-6">
-          <ResultsOverview 
-            assessmentResult={assessmentResult}
-            sectionKeys={sectionKeys}
-            assessmentSections={assessment.sections}
-            resetAssessment={resetAssessment}
-            downloadResults={downloadResults}
-          />
-        </TabsContent>
-        
-        {sectionKeys.map((section) => (
-          <TabsContent key={section} value={section} className="space-y-6">
-            <SectionResult
-              sectionKey={section}
-              sectionData={assessment.sections[section]}
-              score={assessmentResult.sectionScores[section]}
-              answers={assessment.answers}
-              answerOptions={answerOptions}
+        {/* Main content area */}
+        <div className="flex-1">
+          {activeSection === "overview" && (
+            <ResultsOverview 
+              assessmentResult={assessmentResult}
+              sectionKeys={sectionKeys}
+              assessmentSections={assessment.sections}
+              resetAssessment={resetAssessment}
+              downloadResults={downloadResults}
             />
-          </TabsContent>
-        ))}
-      </Tabs>
+          )}
+          
+          {sectionKeys.map((section) => (
+            activeSection === section && (
+              <SectionResult
+                key={section}
+                sectionKey={section}
+                sectionData={assessment.sections[section]}
+                score={assessmentResult.sectionScores[section]}
+                answers={assessment.answers}
+                answerOptions={answerOptions}
+              />
+            )
+          ))}
+        </div>
+      </div>
       
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-4">Recommended Resources</h2>
